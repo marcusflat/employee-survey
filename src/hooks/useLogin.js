@@ -18,14 +18,15 @@ export const useLogin = (referer, setFormError) => {
     try {
       const res = await fetcher(requestBody);
       const { token } = res.data;
-        const { name, id: userId } = parseJwt(token);
+        const { name, id: userId, answered } = parseJwt(token);
 
         setFormError("");
         setAuthTokens(token);
         setTokenIsValid(true);
         setUserInfos({
           name,
-          userId
+          userId,
+          answered
         })
 
     } catch (error) {
