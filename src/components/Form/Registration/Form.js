@@ -71,7 +71,6 @@ function Form(props) {
             id="email"
             label="Email"
             name="email"
-            autoFocus
             inputRef={emailRef}
             error={inputsErrors["email"]}
           />
