@@ -1,19 +1,30 @@
-import React, { createContext, useContext, useState} from "react";
+import React, { createContext, useContext, useState, useEffect} from "react";
+import { parseJwt } from "../helpers";
+import { useAuth } from "./auth";
+import api from "../services";
 
 const UserContext = createContext();
 
 const UserProvider = (props) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfos, setUserInfos] = useState({});
+  const { authToken } = useAuth();
+
+  useEffect(() => {
+    if(!authToken) return;
+
+    const tokenInfos = parseJwt(authToken);
+    setUserInfos(prev => ({...prev, ...tokenInfos}));
+
+    api.get('/user/infos')
+      .then(({ data }) => setUserInfos(prev => ({...prev, ...data})))
+  }, [authToken]);
   
   
-  const setLoggedIn = (param = false) => { 
-    setIsLoggedIn(param);
-  }
+  
 
   return (
     <UserContext.Provider
-      value={{ userIsLogged: isLoggedIn, setUserLogged: setLoggedIn, setUserInfos, userInfos }}
+      value={{ setUserInfos, userInfos }}
       {...props}
     />
   );
