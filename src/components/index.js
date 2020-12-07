@@ -6,6 +6,7 @@ import Toolbar from "./Toolbar/Toolbar";
 import Stepper from "./Stepper";
 import Question from "./Question";
 import Main from "./Main/";
+import BarChart from "./Charts/Bar";
 
 export {
   Logo,
@@ -15,5 +16,6 @@ export {
   Toolbar,
   Stepper,
   Question,
-  Main
+  Main,
+  BarChart
 }
