@@ -6,7 +6,8 @@ import api from "../../services";
 
 const useStyles = makeStyles({
   container: {
-    height: '100%'
+    height: '100%',
+    padding: '0'
   },
   row: {
     height: '50%'
