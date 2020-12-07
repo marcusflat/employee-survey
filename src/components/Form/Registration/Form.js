@@ -106,7 +106,7 @@ function Form(props) {
             color="primary"
             className={classes.submit}
           >
-            Entrar
+            Cadastrar
           </Button>
           <Grid container justify="flex-end">
             <Grid item>

@@ -40,7 +40,7 @@ const Results = () => {
         <Container className={classes.container}>
           <Grid container direction="row"  spacing={2} className={classes.row}>
             {Object.values(chartsData).map(({ chartProps, data, title }) => (
-              <Grid item lg={6} xs={12} className={classes.section}>
+              <Grid item lg={6} xs={12} className={classes.section} key={title}>
                 <Card className={classes.subSection}>
                   <Typography variant="body1" align="center" className={classes.title}>{title}</Typography>
                   <BarChart 

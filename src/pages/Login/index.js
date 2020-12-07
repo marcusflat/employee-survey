@@ -10,10 +10,12 @@ const Login = (props) => {
   const { login } = useLogin(referer, setFormError);
 
   useEffect(() => {
+    let isSubscribed = true;
     if (isFirstRender) return;
 
-    login(formState);
+    login(formState, isSubscribed);
 
+    return () => isSubscribed = false;
       // eslint-disable-next-line
   }, [formState]);
 

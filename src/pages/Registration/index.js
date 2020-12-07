@@ -12,13 +12,14 @@ const Registration = props => {
   const { login } = useLogin(referer, setFormError);
 
   useEffect(() => {
+    let isSubscribed = true;
     if (isFirstRender) return;
     
     fetcher(formState, "/user")
       .then(async (res) => {
         const { email, password } = formState;
 
-        login({ email, password });
+        login({ email, password }, isSubscribed);
 
       })
       .catch((error) => {
@@ -30,6 +31,8 @@ const Registration = props => {
         if (error.request)
           setFormError("Parece que ocorreu um erro, tente novamente!");
       });
+
+      return () => isSubscribed = false;
       // eslint-disable-next-line
   }, [formState]);
   

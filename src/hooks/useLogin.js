@@ -14,11 +14,13 @@ export const useLogin = (referer, setFormError) => {
   const { setUserInfos } = useUser();
   const history = useHistory();
 
-  const login = async (requestBody) => {
+  const login = async (requestBody, isSubscribed) => {
     try {
       const res = await fetcher(requestBody);
       const { token } = res.data;
         const { name, id: userId, answered } = parseJwt(token);
+
+        if(!isSubscribed) return;
 
         setFormError("");
         setAuthTokens(token);
@@ -28,6 +30,8 @@ export const useLogin = (referer, setFormError) => {
           userId,
           answered
         })
+        
+        
 
     } catch (error) {
       if (error.response) {
@@ -43,7 +47,7 @@ export const useLogin = (referer, setFormError) => {
 
   useEffect(() => {
     if (tokenIsValid) history.push(referer);
-  }, [tokenIsValid])
+  }, [tokenIsValid, history, referer])
 
 
   return { login }

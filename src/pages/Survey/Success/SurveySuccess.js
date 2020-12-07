@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Main, Toolbar } from '../../../components';
-import { makeStyles, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 
 
@@ -19,7 +19,7 @@ function SurveySuccess() {
     return () => {
       clearTimeout(timeOut);
     }
-  }, [counter]);
+  }, [counter, history]);
 
   return (
     <>
